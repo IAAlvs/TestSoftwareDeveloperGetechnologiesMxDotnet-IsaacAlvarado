@@ -155,4 +155,3 @@ StyleCopReport.xml
 #vs code
 .vscode/*
 .vscode
-*.db*
