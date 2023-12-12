@@ -27,13 +27,13 @@ public class PersonsEndpointDefinition{
     public static void DefineEndpoints(IEndpointRouteBuilder app){
         var API_VERSION = Environment.GetEnvironmentVariable("API_VERSION")??"v1";
 
-        app.MapPost("/api/"+ API_VERSION+"/persons", StorePerson)  
+        app.MapPost("/api/"+ API_VERSION+"/sales/persons", StorePerson)  
             .WithName("Store person");
-        app.MapGet("/api/"+ API_VERSION+"/persons/{identification}", GetPersonById)  
+        app.MapGet("/api/"+ API_VERSION+"/sales/persons/{identification}", GetPersonById)  
             .WithName("Find person by Id");
-        app.MapGet("/api/"+ API_VERSION+"/persons/", GetPersons)  
+        app.MapGet("/api/"+ API_VERSION+"/sales/persons/", GetPersons)  
             .WithName("Get persons");
-        app.MapDelete("/api/"+ API_VERSION+"/persons/{identification}", DeletePersonById).
+        app.MapDelete("/api/"+ API_VERSION+"/sales/persons/{identification}", DeletePersonById).
             WithName("Delete person by Id");
     }
 
@@ -94,11 +94,7 @@ public class PersonsEndpointDefinition{
     AddPersonDto dto)
     {
         try
-        {
-/*             var dto = body.Deserialize<AddPersonDto>(options:new JsonSerializerOptions{
-                PropertyNameCaseInsensitive = true
-            })!; */
-            
+        {   
             var validation = validator.Validate(dto);
             var person = await directoryService.StorePerson(dto);
 

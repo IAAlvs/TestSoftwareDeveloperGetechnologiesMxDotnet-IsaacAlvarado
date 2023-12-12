@@ -16,6 +16,7 @@ dlldata.c
 *.ilk
 *.meta
 *.obj
+*obj/*
 *.iobj
 *.pch
 *.pdb

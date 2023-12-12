@@ -39,7 +39,7 @@ public class AddPersonDtoValidor : AbstractValidator<AddPersonDto>, IGlobalValid
             .NotEmpty().WithMessage("LastName must not be empty")
             .MaximumLength(50).WithMessage("LastName max length are 50 characters")
             .MinimumLength(3).WithMessage("LastName min length are 3 characters");
-        RuleFor(x => x.IdType)
+        RuleFor(x => x.Identity)
             .NotEmpty().WithMessage("IdType must not be empty")
             .MaximumLength(50).WithMessage("IdType max length are 50 characters")
             .MinimumLength(3).WithMessage("IdType min length are 3 characters");
