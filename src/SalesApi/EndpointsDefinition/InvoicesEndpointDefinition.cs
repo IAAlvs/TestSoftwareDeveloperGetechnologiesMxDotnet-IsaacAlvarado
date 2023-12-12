@@ -1,10 +1,10 @@
 
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using SalesApi.Repositories;
 using SalesApi.Services;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace SalesApi.EndpointDefinition;
 
@@ -19,13 +19,13 @@ public class InvoicesEndpointDefinition{
     }
     public static void DefineEndpoints(IEndpointRouteBuilder app){
         var API_VERSION = Environment.GetEnvironmentVariable("API_VERSION")??"v1";
-        app.MapPost("/api/"+ API_VERSION+"/invoices/persons/{personId}", AddInvoice)  
+        app.MapPost("/api/"+ API_VERSION+"/sales/invoices/persons", AddInvoice)  
             .WithName("Add invoice");
-        app.MapGet("/api/"+ API_VERSION+"/invoices/persons/{personId}", GetInvoicesByPerson)  
+        app.MapGet("/api/"+ API_VERSION+"/sales/invoices/persons/{personId}", GetInvoicesByPerson)  
             .WithName("Get invoices from person");
     }
 
-    private async static Task<IResult> GetInvoicesByPerson(IInvoiceService invoiceService, IValidator<Guid> validator, Guid personId)
+    private async static Task<IResult> GetInvoicesByPerson(IInvoiceService invoiceService, IValidator<Guid> validator, [FromRoute(Name = "personId")]  Guid personId)
     {
         try
         {

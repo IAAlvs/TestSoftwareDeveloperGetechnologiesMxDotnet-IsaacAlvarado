@@ -1,8 +1,5 @@
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using SalesApi.AspectDefinitions;
 using SalesApi.EndpointDefinition;
-using SalesApi.Repositories;
 using Serilog;
 
 Log.Information("Starting Up");
@@ -18,15 +15,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddValidatorsFromAssemblyContaining<IGlobalValidator>();
-builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddFluentValidationClientsideAdapters();
+ValidationAspectDefinition.DefineAspect(builder.Services, builder.Configuration);
 PersonsEndpointDefinition.DefineServices(builder.Services);
 InvoicesEndpointDefinition.DefineServices(builder.Services);
 
 var app = builder.Build();
 CorsAspectDefinition.ConfigureAspect(app);
-
 PersonsEndpointDefinition.DefineEndpoints(app);
 InvoicesEndpointDefinition.DefineEndpoints(app);
 

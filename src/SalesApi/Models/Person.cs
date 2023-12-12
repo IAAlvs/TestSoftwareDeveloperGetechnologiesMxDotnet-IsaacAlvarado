@@ -19,7 +19,7 @@ public class Person
         Identification = identification;
     }
     public ICollection<Invoice>? Invoices { get; set; }
-    public static Person CreateFromDto(AddPersonDto dto)=> new(Guid.NewGuid(), dto.Name, dto.LastName, dto.SecondLastName, dto.IdType);
+    public static Person CreateFromDto(AddPersonDto dto)=> new(Guid.NewGuid(), dto.Name, dto.LastName, dto.SecondLastName, dto.Identity);
     public GetPersonDto ToGetPersonDto() => new(Id, FirstName, LastName, SecondLastName, Identification);
 
 }
