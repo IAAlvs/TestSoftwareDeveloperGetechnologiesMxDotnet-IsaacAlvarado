@@ -31,6 +31,8 @@ Para explorar y probar los endpoints de la API, abre tu navegador y visita:
 Desde la interfaz de Swagger, podrás ver la documentación detallada y realizar pruebas en vivo de la API de Ventas.
 
 ### Notas importantes:
+*   Puedes usar el dockerfile, sin embargo la direccion de la db tiene que configurarse ya sea 
+    que la imagen este basada en linux o windows, simplemente ajusta la variable de "DbConnection" : "DireccionDependiendoTIpodeContenedor\SalesDb.db"
 
 *   Asegúrate de tener .NET SDK instalado en tu máquina antes de ejecutar la aplicación.
 *   Si la aplicación está configurada en un puerto diferente, ajusta las URL en consecuencia.
